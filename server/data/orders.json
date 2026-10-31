@@ -1,1 +1,33 @@
-[]
+[
+  {
+    "id": "888-4259989-5880470",
+    "createdAt": "2026-10-31T09:19:30.948Z",
+    "status": "Confirmed - Preparing for Shipment",
+    "estimatedDelivery": "Tuesday, Nov 3",
+    "customer": {
+      "fullName": "abc",
+      "email": "abc@gmail.com",
+      "address": "abc",
+      "city": "abc",
+      "state": "abc",
+      "zipCode": "123456",
+      "country": "United States"
+    },
+    "paymentMethod": "UPI / Net Banking",
+    "pricing": {
+      "subtotal": 599,
+      "shipping": 0,
+      "tax": 47.92,
+      "total": 646.92
+    },
+    "items": [
+      {
+        "productId": "prod_14b9f780",
+        "title": "Sony Speaker",
+        "price": 599,
+        "quantity": 1,
+        "image": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=600&q=80"
+      }
+    ]
+  }
+]
