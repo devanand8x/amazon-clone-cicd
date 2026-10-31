@@ -1,0 +1,26 @@
+version: '3.8'
+
+# Ready-to-use Local Jenkins Server with Docker-out-of-Docker (DooD) support
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins-ci
+    user: root # Needed to access mounted docker socket
+    restart: unless-stopped
+    ports:
+      - "8080:8080"   # Jenkins Web UI
+      - "50000:50000" # Jenkins Agent Port
+    volumes:
+      - jenkins_data:/var/jenkins_home
+      # Mount host Docker socket so Jenkins can build and deploy Docker images on host
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins-network
+
+volumes:
+  jenkins_data:
+    driver: local
+
+networks:
+  jenkins-network:
+    driver: bridge

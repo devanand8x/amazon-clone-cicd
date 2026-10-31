@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  amazon-clone:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: amazon-clone-app
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+    volumes:
+      # Persist products and orders data across container restarts
+      - ./server/data:/app/server/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - amazon-network
+
+networks:
+  amazon-network:
+    driver: bridge

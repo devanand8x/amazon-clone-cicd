@@ -1,0 +1,23 @@
+{
+  "name": "amazon-clone",
+  "version": "1.0.0",
+  "description": "A full stack Amazon Clone with Node.js, Express, and interactive front-end",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "test": "node --test test/api.test.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  },
+  "keywords": [
+    "amazon-clone",
+    "full-stack",
+    "express",
+    "javascript"
+  ],
+  "author": "",
+  "license": "ISC"
+}
