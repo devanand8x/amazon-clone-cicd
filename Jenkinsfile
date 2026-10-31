@@ -9,8 +9,8 @@ pipeline {
     stages {
         stage('1. Code Validation & Test') {
             steps {
-                echo '🧪 Running unit tests...'
-                sh 'npm test'
+                echo '🧪 Running unit tests inside Node container...'
+                sh 'docker run --rm -v $(pwd):/app -w /app node:latest npm test'
             }
         }
 
@@ -25,16 +25,14 @@ pipeline {
             steps {
                 echo '🚀 Deploying updated Amazon Clone container...'
                 sh """
-                    # Stop & remove old container if running
                     docker stop amazon-app || true
                     docker rm amazon-app || true
 
-                    # Run new updated container
-                    docker run -d \
-                      --name amazon-app \
-                      -p ${PORT}:5000 \
-                      -v \$(pwd)/server/data:/app/server/data \
-                      --restart unless-stopped \
+                    docker run -d \\
+                      --name amazon-app \\
+                      -p ${PORT}:5000 \\
+                      -v \$(pwd)/server/data:/app/server/data \\
+                      --restart unless-stopped \\
                       ${APP_NAME}:latest
                 """
             }
